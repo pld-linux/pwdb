@@ -43,8 +43,8 @@ ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 %package devel
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
-Group:		Libraries
-Group(pl):	Biblioteki
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -56,8 +56,8 @@ Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 %package static
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
-Group:		Libraries
-Group(pl):	Biblioteki
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
