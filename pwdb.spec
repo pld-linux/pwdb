@@ -47,7 +47,7 @@ Group:       Libraries
 Header files for developing PWDB based applications.
 
 %description devel -l pl
-Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
+Pliki nag³ówkowe do tworzenia aplikacji opartych o PWDB.
 
 %package static
 Summary:     PWDB static libraries
