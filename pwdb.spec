@@ -10,7 +10,7 @@ Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
 Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-Patch:		%{name}-pld.patch
+Patch:		pwdb-pld.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/pwdb.txt.bz2 doc/html/*.html
+%doc doc/pwdb.txt.gz doc/html/*.html
 %config %verify(not size mtime md5) /etc/pwdb.conf
 
 %attr(755,root,root) /lib/lib*.so.*.*
