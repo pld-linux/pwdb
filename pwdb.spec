@@ -73,7 +73,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc,lib,usr/include/pwdb}
+install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
 make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/lib \
