@@ -1,15 +1,17 @@
-Summary:     Password Database Library
-Summary(de): Paßwortdatenbank-Library
-Summary(fr): Bibliothèque de la base de données des mots de passe
-Summary(pl): Biblioteka Danych u u¿ytkownikach
-Summary(tr): Parola veri tabaný arþivi
-Name:        pwdb
-Version:     0.55
-Release:     1
-Copyright:   GPL or BSD
-Group:       Base
-Source:      ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Password Database Library
+Summary(de):	Paßwortdatenbank-Library
+Summary(fr):	Bibliothèque de la base de données des mots de passe
+Summary(pl):	Biblioteka Danych u u¿ytkownikach
+Summary(tr):	Parola veri tabaný arþivi
+Name:		pwdb
+Version:	0.55
+Release:	2d
+Copyright:	GPL or BSD
+Group:		Base
+Group(pl):	Bazowe
+Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
+Patch:		%{name}-pld.patch
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 pwdb (Password Database Library) allows configurable access to
@@ -27,7 +29,7 @@ gestion de) /etc/passwd, /etc/shadow ainsi que des systèmes
 d'authentification réseau, dont NIS et Radius.
 
 %description -l pl
-pwdb (Password Database Library) zapewnia spójny interfejs dostêpu do
+Pwdb (Password Database Library) zapewnia spójny interfejs dostêpu do
 zarz±dzania bazami danych o u¿ytkownikach. Biblioteka zwalnia aplikacje od
 konieczno¶ci samodzielnego przetwarzania baz danych, oraz daje
 administratorowi mo¿liwo¶æ wyboru czy dane bêd± pochodziæ z /etc/passwd,
@@ -38,22 +40,25 @@ konfiguracyjny.
 pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine, NIS
 ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 
-%package devel
-Summary:     PWDB header files
-Summary(pl): Pliki nag³ówkowe do PWDB
-Group:       Libraries
+%package	devel
+Summary:	PWDB header files
+Summary(pl):	Pliki nag³ówkowe do PWDB
+Group:		Libraries
+Group(pl):	Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
 Header files for developing PWDB based applications.
 
 %description devel -l pl
-Pliki nag³ówkowe do tworzenia aplikacji opartych o PWDB.
+Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 
 %package static
-Summary:     PWDB static libraries
-Summary(pl): Biblioteki statyczne PWDB
-Group:       Libraries
-Requires:    %{name}-devel = %{version}
+Summary:	PWDB static libraries
+Summary(pl):	Biblioteki statyczne PWDB
+Group:		Libraries
+Group(pl):	Biblioteki
+Requires:	%{name}-devel = %{version}
 
 %description static
 PWDB static libraries.
@@ -63,27 +68,29 @@ Biblioteki statyczne PWDB.
 
 %prep
 %setup -c -q
+%patch -p1
 
 %build
-rm default.defs
-ln -s defs/redhat.defs default.defs
+ln -sf defs/pld.defs default.defs
 
-make
-(cd doc; make; gzip -9 pwdb.ps)
+make OPTIMIZE="$RPM_OPT_FLAGS"
+
+(cd doc; make)
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
 make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/lib \
-	LDCONFIG=":" \
 	install
 
 install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
-strip $RPM_BUILD_ROOT/lib/libp*.so.*.*
 mv $RPM_BUILD_ROOT/lib/libp*.a $RPM_BUILD_ROOT/usr/lib
+
+bzip2 -9 doc/pwdb.txt
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -92,39 +99,47 @@ mv $RPM_BUILD_ROOT/lib/libp*.a $RPM_BUILD_ROOT/usr/lib
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%doc Copyright doc/{pwdb.ps.gz,pwdb.txt,html}
-%config /etc/pwdb.conf
-%attr(755, root, root) /lib/libp*.so.*.*
+%defattr(644,root,root,755)
+%doc doc/pwdb.txt.bz2 doc/html/*.html
+
+%config %verify(not size mtime md5) /etc/pwdb.conf
+
+%attr(755,root,root) /lib/*.so.*
 
 %files devel
-%defattr(644, root, root, 755)
-/lib/libpwdb.so
-/usr/include/pwdb
+%defattr(644,root,root,755)
+
+%attr(755,root,root) /lib/*.so
+
+%dir /usr/include/pwdb
+/usr/include/pwdb/*.h
 
 %files static
-%attr(644, root, root) /usr/lib/lib*.a
+%attr(644,root,root,755) /usr/lib/*.a
 
 %changelog
+* Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.55-2d]
+- added Group(pl),  
+- fixed static subpackage,
+- compressed %doc,
+- added pld.defines.
+
 * Sun Oct  4 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.54-8]
+  [0.55-1d]
 - added devel and static subpackages.
 
-* Wed Sep 30 1998 Grzegorz Stanislawski <stangrze@open.net.pl>
-- added pl translation,
-- added BuildRoot.
+%changelog
+* Thu Oct 01 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.54-8d]
+- build against Tornado,
+- fixed pl translation,
+- added %defattr support,
+- minor modifications of the spec file.
 
-* Tue Aug  4 1998 Jeff Johnson <jbj@redhat.com>
-- build root
-
-* Tue Jun  2 1998 Jeff Johnson <jbj@redhat.com>
-- Eliminate compiler optimization avoidance on sparc.
-
-* Sat May 23 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr
-
-* Sat May 23 1998 Jeff Johnson <jbj@redhat.com>
-- Changed sgml2latex syntax (modified sgml2ps patch).
+* Wed Sep 30 1998 Grzegorz Stanis³awski <stangrze@open.net.pl>
+- Added Polish translation
+- Added BuildRoot
 
 * Fri Apr 24 1998 Prospector System <bugs@redhat.com>
 - translations modified for de, fr, tr
