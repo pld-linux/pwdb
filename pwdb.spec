@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka Danych u u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.57
-Release:	2
+Release:	3
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
