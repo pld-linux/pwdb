@@ -1,14 +1,14 @@
 Summary:	Password Database Library
 Summary(de):	Paßwortdatenbank-Library
 Summary(fr):	Bibliothèque de la base de données des mots de passe
-Summary(pl):	Biblioteka Danych u u¿ytkownikach
+Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.57
 Release:	3
 Copyright:	GPL or BSD
 Group:		Base
-Group(pl):	Bazowe
+Group(pl):	Podstawowe
 Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch:		pwdb-pld.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
