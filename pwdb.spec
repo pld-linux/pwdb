@@ -1,11 +1,11 @@
 Summary:	Password Database Library
-Summary(de):	Paßwortdatenbank-Library
+Summary(de):	Passwortdatenbank-Library
 Summary(fr):	Bibliothèque de la base de données des mots de passe
 Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
-Version:	0.57
-Release:	5
+Version:	0.60
+Release:	2
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Podstawowe
@@ -15,14 +15,19 @@ BuildRequires:	sgml-tools
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-pwdb (Password Database Library) allows configurable access to
-and management of /etc/passwd, /etc/shadow, and network authentication
-systems including NIS and Radius.
+The pwdb package contains libpwdb, the password database library. Libpwdb is
+a library which implements a generic user information database. Libpwdb was
+specifically designed to work with Linux's PAM (Pluggable Authentication
+Modules). Libpwdb allows configurable access to and management of security
+tools like /etc/passwd, /etc/shadow and network authentication systems
+including NIS and Radius.
 
 %description -l de
-pwdb (Paßwort-Datenbank-Library) ermöglicht den konfigurierbaren Zugriff auf
-und die Verwaltung von /etc/passwd, /etc/shadow und
-Netzwerk-Authentifikations-Systemen einschließlich NIS und Radius.
+Das pwdb-Paket enthält libpwdb, die Passwortdatenbank-Library. Libpwdb ist
+eine Library, die eine Userinformations-Datenbank implementiert, und mit
+Linux-PAM (Pluggable Authentication Modules) zusammenarbeited. Libpwdb
+erlaubt konfigurierbaren Zugriff auf /etc/passwd, /etc/shadow und
+Netzwerkauthentifizierungssysteme wie NIS und Radius.
 
 %description -l fr
 pwdb (Password Database Library) permet un accès configurable à (et la
