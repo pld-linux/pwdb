@@ -23,15 +23,15 @@ pwdb (Password Database Library) allows configurable access to
 and management of /etc/passwd, /etc/shadow, and network authentication
 systems including NIS and Radius.
 
-%description -l de
-pwdb (Paßwort-Datenbank-Library) ermöglicht den konfigurierbaren 
-Zugriff auf und die Verwaltung von /etc/passwd, /etc/shadow und 
-Netzwerk-Authentifikations-Systemen einschließlich NIS und Radius. 
+%description -l de pwdb
+(Paßwort-Datenbank-Library) ermöglicht den konfigurierbaren Zugriff auf und
+die Verwaltung von /etc/passwd, /etc/shadow und
+Netzwerk-Authentifikations-Systemen einschließlich NIS und Radius.
 
 %description -l fr
 pwdb (Password Database Library) permet un accès configurable à (et la
 gestion de) /etc/passwd, /etc/shadow ainsi que des systèmes
-d'authentification réseau, dont NIS et Radius.  
+d'authentification réseau, dont NIS et Radius.
 
 %description -l pl
 pwdb (Password Database Library) zapewnia spójny interfejs dostêpu do
@@ -123,6 +123,18 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Sep 30 1998 Grzegorz Stanislawski <stangrze@open.net.pl>
 - added pl translation,
 - added BuildRoot.
+
+* Tue Aug  4 1998 Jeff Johnson <jbj@redhat.com>
+- build root
+
+* Tue Jun  2 1998 Jeff Johnson <jbj@redhat.com>
+- Eliminate compiler optimization avoidance on sparc.
+
+* Sat May 23 1998 Prospector System <bugs@redhat.com>
+- translations modified for de, fr
+
+* Sat May 23 1998 Jeff Johnson <jbj@redhat.com>
+- Changed sgml2latex syntax (modified sgml2ps patch).
 
 * Fri Apr 24 1998 Prospector System <bugs@redhat.com>
 - translations modified for de, fr, tr
