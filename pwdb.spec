@@ -87,10 +87,10 @@ make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
 
 install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
-mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT/usr/lib
+mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
 ln -sf ../../lib/libpwdb.so.%{version} \
-    $RPM_BUILD_ROOT/usr/lib/libpwdb.so
+    $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
 
 gzip -9nf doc/pwdb.txt
 
@@ -109,13 +109,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/lib/*.so
+%attr(755,root,root) %{_libdir}/*.so
 
 /usr/include/pwdb
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %changelog
 * Sun Jan 24 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
