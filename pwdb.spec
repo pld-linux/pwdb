@@ -84,17 +84,17 @@ cd doc
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
+install -d $RPM_BUILD_ROOT/{etc,%{_lib},%{_includedir}/pwdb,%{_libdir}}
 
 %{__make} install \
 	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
-	LIBDIR=$RPM_BUILD_ROOT/lib
+	LIBDIR=$RPM_BUILD_ROOT/%{_lib}
 
 install conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
-mv -f $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/%{_lib}/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
-ln -sf /lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
+ln -sf /%{_lib}/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/pwdb.txt doc/html/*.html
 %config %verify(not size mtime md5) %{_sysconfdir}/pwdb.conf
-%attr(755,root,root) /lib/lib*.so.*.*
+%attr(755,root,root) /%{_lib}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
