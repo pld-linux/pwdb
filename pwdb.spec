@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.57
-Release:	3
+Release:	4
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Podstawowe
@@ -40,7 +40,7 @@ konfiguracyjny.
 pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine, NIS
 ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 
-%package devel
+%package	devel
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Development/Libraries
@@ -53,7 +53,7 @@ Header files for developing PWDB based applications.
 %description devel -l pl
 Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 
-%package static
+%package	static
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
@@ -89,8 +89,9 @@ install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
 mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
-ln -sf ../../lib/libpwdb.so.%{version} \
-    $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
+ln -sf ../../lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
+
+strip --strip-unneeded $RPM_BUILD_ROOT/lib/*.so.*
 
 gzip -9nf doc/pwdb.txt
 
@@ -103,9 +104,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/pwdb.txt.gz doc/html/*.html
+
 %config %verify(not size mtime md5) /etc/pwdb.conf
 
-%attr(755,root,root) /lib/lib*.so.*.*
+%attr(755,root,root) /lib/lib*.so.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -144,23 +146,3 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Sep 30 1998 Grzegorz Stanis³awski <stangrze@open.net.pl>
 - Added Polish translation
 - Added BuildRoot
-
-* Fri Apr 24 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Fri Mar 13 1998 Cristian Gafton <gafton@redhat.com>
-- added a patch to fix a group lookup on the posix compatibility routines
-
-* Fri Oct 24 1997 Erik Troan <ewt@redhat.com>
-- added RPM_OPT_FLAGS support
-- optimization on a sparc breaks things :-(
-
-* Thu Jun 12 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
-
-* Tue Apr 22 1997 Michael K. Johnson <johnsonm@redhat.com>
-- 0.54-3: Updated default config file to work better with shadow, and
-          to work with NIS.
-
-* Sat Apr 19 1997 Michael K. Johnson <johnsonm@redhat.com>
-- 0.54-2: Included Andrew's patch for long usernames.
