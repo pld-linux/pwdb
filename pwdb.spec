@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.61
-Release:	1
+Release:	2
 License:	GPL/BSD
 Group:		Base
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
@@ -78,7 +78,8 @@ ln -sf defs/pld.defs default.defs
 
 %{__make} OPTIMIZE="%{rpmcflags}"
 
-(cd doc; %{__make})
+cd doc
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -92,19 +93,17 @@ install conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
 mv -f $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
-ln -sf ../../lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
-
-gzip -9nf doc/pwdb.txt
-
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+ln -sf /lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc doc/pwdb.txt.gz doc/html/*.html
+%doc doc/pwdb.txt doc/html/*.html
 %config %verify(not size mtime md5) %{_sysconfdir}/pwdb.conf
 %attr(755,root,root) /lib/lib*.so.*.*
 
