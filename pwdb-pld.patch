@@ -1,0 +1,25 @@
+--- /dev/null	Tue May  5 22:32:27 1998
++++ pwdb-0.55/defs/pld.defs	Sat Jan 23 12:44:53 1999
+@@ -0,0 +1,22 @@
++#
++# Standard defines file for PLD Linux
++
++CC=gcc
++INSTALL=install
++MKDIR=install -d
++OPTIMIZE=-O2 -pipe -g
++DEFINES=-Dlinux
++CFLAGS=$(OPTIMIZE) $(DEFINES) 
++ULIBS=#-lefence
++LD_D=gcc -shared -Xlinker -x
++LD=ld
++LDCONFIG=
++AR=ar -cr
++RANLIB=ranlib
++PPFIX=
++PREFIX=$(PPFIX)/
++INCLUDED=$(PPFIX)/usr/include/pwdb
++SUPLEMENTED=$(PREFIX)/sbin
++CONFIGED=$(PPFIX)/etc
++LIBDIR=$(PREFIX)/lib
++SECUREDIR=$(LIBDIR)/security
