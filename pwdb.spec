@@ -23,9 +23,9 @@ pwdb (Password Database Library) allows configurable access to
 and management of /etc/passwd, /etc/shadow, and network authentication
 systems including NIS and Radius.
 
-%description -l de pwdb
-(Paßwort-Datenbank-Library) ermöglicht den konfigurierbaren Zugriff auf und
-die Verwaltung von /etc/passwd, /etc/shadow und
+%description -l de
+pwdb (Paßwort-Datenbank-Library) ermöglicht den konfigurierbaren Zugriff auf
+und die Verwaltung von /etc/passwd, /etc/shadow und
 Netzwerk-Authentifikations-Systemen einschließlich NIS und Radius.
 
 %description -l fr
