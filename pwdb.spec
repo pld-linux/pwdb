@@ -5,12 +5,14 @@ Summary(pl):	Biblioteka Danych u u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.55
-Release:	2d
+Release:	4
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch0:		pwdb-pld.patch
+BuildPrereq:	rpm >= 2.92
+BuildPrereq:	sgml-tools
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -90,7 +92,7 @@ install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
 mv $RPM_BUILD_ROOT/lib/libp*.a $RPM_BUILD_ROOT/usr/lib
 
-bzip2 -9 doc/pwdb.txt
+gzip -9nf doc/pwdb.txt
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -100,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/pwdb.txt.bz2 doc/html/*.html
+%doc doc/pwdb.txt.gz doc/html/*.html
 
 %config %verify(not size mtime md5) /etc/pwdb.conf
 
@@ -115,7 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/pwdb/*.h
 
 %files static
-%attr(644,root,root,755) /usr/lib/*.a
+%defattr(644,root,root,755)
+/usr/lib/*.a
 
 %changelog
 * Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
