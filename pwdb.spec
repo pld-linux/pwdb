@@ -118,31 +118,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%changelog
-* Sun Jan 24 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.55-3d]
-- fixed symlinks ... 
-
-* Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.55-2d]
-- added Group(pl),  
-- fixed static subpackage,
-- compressed %doc,
-- added pld.defines.
-
-* Sun Oct  4 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.55-1d]
-- added devel and static subpackages.
-
-%changelog
-* Thu Oct 01 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.54-8d]
-- build against Tornado,
-- fixed pl translation,
-- added %defattr support,
-- minor modifications of the spec file.
-
-* Wed Sep 30 1998 Grzegorz Stanis³awski <stangrze@open.net.pl>
-- Added Polish translation
-- Added BuildRoot
