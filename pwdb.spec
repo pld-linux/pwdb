@@ -81,7 +81,7 @@ Biblioteki statyczne PWDB.
 %build
 ln -sf defs/pld.defs default.defs
 
-make OPTIMIZE="$RPM_OPT_FLAGS"
+%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
 
 (cd doc; make)
 
@@ -89,7 +89,7 @@ make OPTIMIZE="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
-make install \
+%{__make} install \
 	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/lib
 
