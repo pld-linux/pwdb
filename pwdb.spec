@@ -8,26 +8,27 @@ Version:	0.61
 Release:	1
 License:	GPL or BSD
 Group:		Base
+Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-Patch0:		pwdb-pld.patch
+Patch0:		%{name}-pld.patch
 BuildRequires:	sgml-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The pwdb package contains libpwdb, the password database library. Libpwdb
-is a library which implements a generic user information database. Libpwdb
-was specifically designed to work with Linux's PAM (Pluggable
-Authentication Modules). Libpwdb allows configurable access to and
-management of security tools like /etc/passwd, /etc/shadow and network
-authentication systems including NIS and Radius.
+The pwdb package contains libpwdb, the password database library.
+Libpwdb is a library which implements a generic user information
+database. Libpwdb was specifically designed to work with Linux's PAM
+(Pluggable Authentication Modules). Libpwdb allows configurable access
+to and management of security tools like /etc/passwd, /etc/shadow and
+network authentication systems including NIS and Radius.
 
 %description -l de
-Das pwdb-Paket enthält libpwdb, die Passwortdatenbank-Library. Libpwdb ist
-eine Library, die eine Userinformations-Datenbank implementiert, und mit
-Linux-PAM (Pluggable Authentication Modules) zusammenarbeited. Libpwdb
-erlaubt konfigurierbaren Zugriff auf /etc/passwd, /etc/shadow und
-Netzwerkauthentifizierungssysteme wie NIS und Radius.
+Das pwdb-Paket enthält libpwdb, die Passwortdatenbank-Library. Libpwdb
+ist eine Library, die eine Userinformations-Datenbank implementiert,
+und mit Linux-PAM (Pluggable Authentication Modules) zusammenarbeited.
+Libpwdb erlaubt konfigurierbaren Zugriff auf /etc/passwd, /etc/shadow
+und Netzwerkauthentifizierungssysteme wie NIS und Radius.
 
 %description -l fr
 pwdb (Password Database Library) permet un accès configurable à (et la
@@ -36,20 +37,21 @@ d'authentification réseau, dont NIS et Radius.
 
 %description -l pl
 Pwdb (Password Database Library) zapewnia spójny interfejs dostêpu do
-zarz±dzania bazami danych o u¿ytkownikach. Biblioteka zwalnia aplikacje od
-konieczno¶ci samodzielnego przetwarzania baz danych, oraz daje
-administratorowi mo¿liwo¶æ wyboru czy dane bêd± pochodziæ z /etc/passwd,
-/etc/shadow czy baz sieciowych jak NIS lub RADIUS, poprzez prosty plik
-konfiguracyjny.
+zarz±dzania bazami danych o u¿ytkownikach. Biblioteka zwalnia
+aplikacje od konieczno¶ci samodzielnego przetwarzania baz danych, oraz
+daje administratorowi mo¿liwo¶æ wyboru czy dane bêd± pochodziæ z
+/etc/passwd, /etc/shadow czy baz sieciowych jak NIS lub RADIUS,
+poprzez prosty plik konfiguracyjny.
 
 %description -l tr
-pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine, NIS
-ve Radius içeren sistemlerde að doðrulamasýna izin verir.
+pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine,
+NIS ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 
 %package devel
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -64,6 +66,7 @@ Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -81,9 +84,9 @@ Biblioteki statyczne PWDB.
 %build
 ln -sf defs/pld.defs default.defs
 
-%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
+%{__make} OPTIMIZE="%{rpmcflags}"
 
-(cd doc; make)
+(cd doc; %{__make})
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -95,11 +98,9 @@ install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
 install conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
-mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
 ln -sf ../../lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
-
-strip --strip-unneeded $RPM_BUILD_ROOT/lib/*.so.*.*
 
 gzip -9nf doc/pwdb.txt
 
@@ -121,4 +122,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/pwdb
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
