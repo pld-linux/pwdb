@@ -9,6 +9,7 @@ Release:	2
 License:	GPL/BSD
 Group:		Base
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
+# Source0-md5: 47e2dc0d5590390fe7a3937961575b09
 Patch0:		%{name}-pld.patch
 BuildRequires:	sgml-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
