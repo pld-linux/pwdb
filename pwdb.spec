@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka Danych u u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.56
-Release:	3
+Release:	4
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
@@ -40,7 +40,7 @@ konfiguracyjny.
 pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine, NIS
 ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 
-%package	devel
+%package devel
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Libraries
@@ -89,7 +89,7 @@ install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
 mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT/usr/lib
 
-ln -sf ../../lib/libpwdb.so.*.* \
+ln -sf ../../lib/libpwdb.so.%{version} \
     $RPM_BUILD_ROOT/usr/lib/libpwdb.so
 
 gzip -9nf doc/pwdb.txt
