@@ -4,8 +4,8 @@ Summary(fr):	Bibliothèque de la base de données des mots de passe
 Summary(pl):	Biblioteka Danych u u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
-Version:	0.56
-Release:	4
+Version:	0.57
+Release:	2
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/pwdb
 
 %files static
-%attr(644,root,root,755)
+%defattr(644,root,root,755)
 /usr/lib/lib*.a
 
 %changelog
