@@ -12,7 +12,7 @@ Group(pl):	Podstawowe
 Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch:		pwdb-pld.patch
 BuildRequires:	sgml-tools
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The pwdb package contains libpwdb, the password database library. Libpwdb is
