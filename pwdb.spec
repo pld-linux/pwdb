@@ -81,7 +81,7 @@ make OPTIMIZE="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
-make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
+make	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/lib \
 	install
 
@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
 
-/usr/include/pwdb
+%{_includedir}/pwdb
 
 %files static
 %defattr(644,root,root,755)
