@@ -8,8 +8,6 @@ Version:	0.61
 Release:	1
 License:	GPL or BSD
 Group:		Base
-Group(de):	GrЭndsДtzlich
-Group(pl):	Podstawowe
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pld.patch
 BuildRequires:	sgml-tools
@@ -51,13 +49,6 @@ NIS ve Radius iГeren sistemlerde aП doПrulamasЩna izin verir.
 Summary:	PWDB header files
 Summary(pl):	Pliki nagЁСwkowe do PWDB
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -70,13 +61,6 @@ Pliki nagЁСwkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
