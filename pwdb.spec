@@ -4,23 +4,23 @@ Summary(fr):	Bibliothèque de la base de données des mots de passe
 Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
-Version:	0.60
-Release:	2
-Copyright:	GPL or BSD
+Version:	0.61
+Release:	1
+License:	GPL or BSD
 Group:		Base
 Group(pl):	Podstawowe
-Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-Patch:		pwdb-pld.patch
+Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
+Patch0:		pwdb-pld.patch
 BuildRequires:	sgml-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The pwdb package contains libpwdb, the password database library. Libpwdb is
-a library which implements a generic user information database. Libpwdb was
-specifically designed to work with Linux's PAM (Pluggable Authentication
-Modules). Libpwdb allows configurable access to and management of security
-tools like /etc/passwd, /etc/shadow and network authentication systems
-including NIS and Radius.
+The pwdb package contains libpwdb, the password database library. Libpwdb
+is a library which implements a generic user information database. Libpwdb
+was specifically designed to work with Linux's PAM (Pluggable
+Authentication Modules). Libpwdb allows configurable access to and
+management of security tools like /etc/passwd, /etc/shadow and network
+authentication systems including NIS and Radius.
 
 %description -l de
 Das pwdb-Paket enthält libpwdb, die Passwortdatenbank-Library. Libpwdb ist
@@ -50,6 +50,7 @@ ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -63,6 +64,7 @@ Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
@@ -91,7 +93,7 @@ make install \
 	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/lib
 
-install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
+install conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
 mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
@@ -110,17 +112,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/pwdb.txt.gz doc/html/*.html
-
-%config %verify(not size mtime md5) /etc/pwdb.conf
-
+%config %verify(not size mtime md5) %{_sysconfdir}/pwdb.conf
 %attr(755,root,root) /lib/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
-
 %{_includedir}/pwdb
 
 %files static
-%defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
