@@ -5,12 +5,13 @@ Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.57
-Release:	4
+Release:	5
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Podstawowe
 Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch:		pwdb-pld.patch
+BuildRequires:	sgml-tools
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -40,7 +41,7 @@ konfiguracyjny.
 pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine, NIS
 ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 
-%package	devel
+%package devel
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Development/Libraries
@@ -53,7 +54,7 @@ Header files for developing PWDB based applications.
 %description devel -l pl
 Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 
-%package	static
+%package static
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
@@ -81,9 +82,9 @@ make OPTIMIZE="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
-make	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
-	LIBDIR=$RPM_BUILD_ROOT/lib \
-	install
+make install \
+	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
+	LIBDIR=$RPM_BUILD_ROOT/lib
 
 install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
@@ -91,7 +92,7 @@ mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT%{_libdir}
 
 ln -sf ../../lib/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
 
-strip --strip-unneeded $RPM_BUILD_ROOT/lib/*.so.*
+strip --strip-unneeded $RPM_BUILD_ROOT/lib/*.so.*.*
 
 gzip -9nf doc/pwdb.txt
 
@@ -107,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %config %verify(not size mtime md5) /etc/pwdb.conf
 
-%attr(755,root,root) /lib/lib*.so.*
+%attr(755,root,root) /lib/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
