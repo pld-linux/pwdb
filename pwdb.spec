@@ -9,8 +9,8 @@ Release:	2d
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
-Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-Patch:		%{name}-pld.patch
+Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
+Patch0:		pwdb-pld.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -68,7 +68,7 @@ Biblioteki statyczne PWDB.
 
 %prep
 %setup -c -q
-%patch -p1
+%patch0 -p1
 
 %build
 ln -sf defs/pld.defs default.defs
