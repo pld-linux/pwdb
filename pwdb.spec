@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka Danych o u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.61
-Release:	5
+Release:	4
 License:	GPL/BSD
 Group:		Base
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
