@@ -77,14 +77,14 @@ Biblioteki statyczne PWDB.
 %build
 ln -sf defs/pld.defs default.defs
 
-%{__make} OPTIMIZE="%{rpmcflags}"
+%{__make} \
+	OPTIMIZE="%{rpmcflags}"
 
-cd doc
-%{__make}
+%{__make} -C doc
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc,%{_lib},%{_includedir}/pwdb,%{_libdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/%{_lib},%{_includedir}/pwdb,%{_libdir}}
 
 %{__make} install \
 	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
