@@ -6,7 +6,7 @@ Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
 Version:	0.61
 Release:	1
-License:	GPL or BSD
+License:	GPL/BSD
 Group:		Base
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pld.patch
