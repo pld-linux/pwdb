@@ -66,7 +66,7 @@ Biblioteki statyczne PWDB.
 
 %build
 rm default.defs
-ln -s defs/pld.defs default.defs
+ln -s defs/redhat.defs default.defs
 
 make
 (cd doc; make; gzip -9 pwdb.ps)
