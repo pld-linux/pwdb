@@ -4,13 +4,13 @@ Summary(fr):	Bibliothèque de la base de données des mots de passe
 Summary(pl):	Biblioteka Danych u u¿ytkownikach
 Summary(tr):	Parola veri tabaný arþivi
 Name:		pwdb
-Version:	0.55
-Release:	2d
+Version:	0.56
+Release:	3
 Copyright:	GPL or BSD
 Group:		Base
 Group(pl):	Bazowe
-Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
-Patch0:		pwdb-pld.patch
+Source:		ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
+Patch:		%{name}-pld.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -68,7 +68,7 @@ Biblioteki statyczne PWDB.
 
 %prep
 %setup -c -q
-%patch0 -p1
+%patch -p1
 
 %build
 ln -sf defs/pld.defs default.defs
@@ -79,7 +79,6 @@ make OPTIMIZE="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/{etc,lib,usr/{include/pwdb,lib}}
 
 make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
@@ -88,9 +87,12 @@ make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
 
 install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
-mv $RPM_BUILD_ROOT/lib/libp*.a $RPM_BUILD_ROOT/usr/lib
+mv $RPM_BUILD_ROOT/lib/libp*.a	$RPM_BUILD_ROOT/usr/lib
 
-bzip2 -9 doc/pwdb.txt
+ln -sf ../../lib/libpwdb.so.*.* \
+    $RPM_BUILD_ROOT/usr/lib/libpwdb.so
+
+gzip -9nf doc/pwdb.txt
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -101,23 +103,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/pwdb.txt.bz2 doc/html/*.html
-
 %config %verify(not size mtime md5) /etc/pwdb.conf
 
-%attr(755,root,root) /lib/*.so.*
+%attr(755,root,root) /lib/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) /usr/lib/*.so
 
-%attr(755,root,root) /lib/*.so
-
-%dir /usr/include/pwdb
-/usr/include/pwdb/*.h
+/usr/include/pwdb
 
 %files static
-%attr(644,root,root,755) /usr/lib/*.a
+%attr(644,root,root,755)
+/usr/lib/lib*.a
 
 %changelog
+* Sun Jan 24 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [0.55-3d]
+- fixed symlinks ... 
+
 * Sat Jan 23 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.55-2d]
 - added Group(pl),  
