@@ -4,18 +4,11 @@ Summary(fr): Bibliothèque de la base de données des mots de passe
 Summary(pl): Biblioteka Danych u u¿ytkownikach
 Summary(tr): Parola veri tabaný arþivi
 Name:        pwdb
-Version:     0.54
-Release:     13
+Version:     0.55
+Release:     1
 Copyright:   GPL or BSD
 Group:       Base
-Source:      ftp://sysadm.sorosis.ro/pub/libpwdb/libpwdb-0.54preC.tar.gz
-Patch0:      libpwdb-0.54-defaults.patch
-Patch1:      libpwdb-0.54-sgml2ps.patch
-Patch2:      libpwdb-0.54-glibc.patch
-Patch3:      libpwdb-0.54-longname.patch
-Patch4:      libpwdb-0.54-badconfig.patch
-Patch5:      libpwdb-0.54-grp.patch 
-Patch6:      libpwdb-0.54preC-pld.patch.diff
+Source:      ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
 BuildRoot:   /tmp/%{name}-%{version}-root
 
 %description
@@ -69,14 +62,7 @@ PWDB static libraries.
 Biblioteki statyczne PWDB.
 
 %prep
-%setup -q -n libpwdb-0.54preC
-%patch -p1 -b .defaults
-%patch1 -p1 -b .sgml2ps
-%patch2 -p1 -b .glibc
-%patch3 -p1 -b .longname
-%patch4 -p1 -b .badconfig
-%patch5 -p1 -b .grp
-%patch6 -p1
+%setup -c -q
 
 %build
 rm default.defs
@@ -87,9 +73,13 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc,usr/lib}
+install -d $RPM_BUILD_ROOT/{etc,lib,usr/include/pwdb}
 
-make install PPFIX="$RPM_BUILD_ROOT"
+make	INCLUDED=$RPM_BUILD_ROOT/usr/include/pwdb \
+	LIBDIR=$RPM_BUILD_ROOT/lib \
+	LDCONFIG=":" \
+	install
+
 install conf/pwdb.conf $RPM_BUILD_ROOT/etc/pwdb.conf
 
 strip $RPM_BUILD_ROOT/lib/libp*.so.*.*
