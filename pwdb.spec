@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/pwdb.txt doc/html/*.html
-%config %verify(not size mtime md5) %{_sysconfdir}/pwdb.conf
+%config %verify(not md5 mtime size) %{_sysconfdir}/pwdb.conf
 %attr(755,root,root) /%{_lib}/lib*.so.*.*
 
 %files devel
