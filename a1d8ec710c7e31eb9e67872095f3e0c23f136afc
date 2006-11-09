@@ -1,0 +1,3 @@
+- use absolute symlinks between directories
+- killed subshell, new %doc
+- release 2
