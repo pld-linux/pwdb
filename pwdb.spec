@@ -50,7 +50,7 @@ NIS ve Radius içeren sistemlerde að doðrulamasýna izin verir.
 Summary:	PWDB header files
 Summary(pl):	Pliki nag³ówkowe do PWDB
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for developing PWDB based applications.
@@ -62,7 +62,7 @@ Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 Summary:	PWDB static libraries
 Summary(pl):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 PWDB static libraries.
