@@ -1,8 +1,8 @@
 Summary:	Password Database Library
-Summary(de):	Passwortdatenbank-Library
-Summary(fr):	Bibliothèque de la base de données des mots de passe
-Summary(pl):	Biblioteka Danych o u¿ytkownikach
-Summary(tr):	Parola veri tabaný arþivi
+Summary(de.UTF-8):   Passwortdatenbank-Library
+Summary(fr.UTF-8):   BibliothÃ¨que de la base de donnÃ©es des mots de passe
+Summary(pl.UTF-8):   Biblioteka Danych o uÅ¼ytkownikach
+Summary(tr.UTF-8):   Parola veri tabanÄ± arÅŸivi
 Name:		pwdb
 Version:	0.61
 Release:	6
@@ -22,52 +22,52 @@ database. Libpwdb was specifically designed to work with Linux's PAM
 to and management of security tools like /etc/passwd, /etc/shadow and
 network authentication systems including NIS and Radius.
 
-%description -l de
-Das pwdb-Paket enthält libpwdb, die Passwortdatenbank-Library. Libpwdb
+%description -l de.UTF-8
+Das pwdb-Paket enthÃ¤lt libpwdb, die Passwortdatenbank-Library. Libpwdb
 ist eine Library, die eine Userinformations-Datenbank implementiert,
 und mit Linux-PAM (Pluggable Authentication Modules) zusammenarbeited.
 Libpwdb erlaubt konfigurierbaren Zugriff auf /etc/passwd, /etc/shadow
 und Netzwerkauthentifizierungssysteme wie NIS und Radius.
 
-%description -l fr
-pwdb (Password Database Library) permet un accès configurable à (et la
-gestion de) /etc/passwd, /etc/shadow ainsi que des systèmes
-d'authentification réseau, dont NIS et Radius.
+%description -l fr.UTF-8
+pwdb (Password Database Library) permet un accÃ¨s configurable Ã  (et la
+gestion de) /etc/passwd, /etc/shadow ainsi que des systÃ¨mes
+d'authentification rÃ©seau, dont NIS et Radius.
 
-%description -l pl
-Pwdb (Password Database Library) zapewnia spójny interfejs dostêpu do
-zarz±dzania bazami danych o u¿ytkownikach. Biblioteka zwalnia
-aplikacje od konieczno¶ci samodzielnego przetwarzania baz danych, oraz
-daje administratorowi mo¿liwo¶æ wyboru czy dane bêd± pochodziæ z
+%description -l pl.UTF-8
+Pwdb (Password Database Library) zapewnia spÃ³jny interfejs dostÄ™pu do
+zarzÄ…dzania bazami danych o uÅ¼ytkownikach. Biblioteka zwalnia
+aplikacje od koniecznoÅ›ci samodzielnego przetwarzania baz danych, oraz
+daje administratorowi moÅ¼liwoÅ›Ä‡ wyboru czy dane bÄ™dÄ… pochodziÄ‡ z
 /etc/passwd, /etc/shadow czy baz sieciowych jak NIS lub RADIUS,
 poprzez prosty plik konfiguracyjny.
 
-%description -l tr
-pwdb, /etc/passwd ve /etc/shadow dosyalarýnýn yönetimine ve eriþimine,
-NIS ve Radius içeren sistemlerde að doðrulamasýna izin verir.
+%description -l tr.UTF-8
+pwdb, /etc/passwd ve /etc/shadow dosyalarÄ±nÄ±n yÃ¶netimine ve eriÅŸimine,
+NIS ve Radius iÃ§eren sistemlerde aÄŸ doÄŸrulamasÄ±na izin verir.
 
 %package devel
 Summary:	PWDB header files
-Summary(pl):	Pliki nag³ówkowe do PWDB
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe do PWDB
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for developing PWDB based applications.
 
-%description devel -l pl
-Pliki nag³ówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 
 %package static
 Summary:	PWDB static libraries
-Summary(pl):	Biblioteki statyczne PWDB
+Summary(pl.UTF-8):   Biblioteki statyczne PWDB
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 PWDB static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne PWDB.
 
 %prep
