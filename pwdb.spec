@@ -1,8 +1,8 @@
 Summary:	Password Database Library
-Summary(de.UTF-8):   Passwortdatenbank-Library
-Summary(fr.UTF-8):   Bibliothèque de la base de données des mots de passe
-Summary(pl.UTF-8):   Biblioteka Danych o użytkownikach
-Summary(tr.UTF-8):   Parola veri tabanı arşivi
+Summary(de.UTF-8):	Passwortdatenbank-Library
+Summary(fr.UTF-8):	Bibliothèque de la base de données des mots de passe
+Summary(pl.UTF-8):	Biblioteka Danych o użytkownikach
+Summary(tr.UTF-8):	Parola veri tabanı arşivi
 Name:		pwdb
 Version:	0.61
 Release:	6
@@ -48,7 +48,7 @@ NIS ve Radius içeren sistemlerde ağ doğrulamasına izin verir.
 
 %package devel
 Summary:	PWDB header files
-Summary(pl.UTF-8):   Pliki nagłówkowe do PWDB
+Summary(pl.UTF-8):	Pliki nagłówkowe do PWDB
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -60,7 +60,7 @@ Pliki nagłówkowe do PWDB do tworzenia aplikacji opartych o PWDB.
 
 %package static
 Summary:	PWDB static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne PWDB
+Summary(pl.UTF-8):	Biblioteki statyczne PWDB
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
