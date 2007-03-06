@@ -5,7 +5,7 @@ Summary(pl.UTF-8):	Biblioteka Danych o użytkownikach
 Summary(tr.UTF-8):	Parola veri tabanı arşivi
 Name:		pwdb
 Version:	0.61
-Release:	6
+Release:	7
 License:	GPL/BSD
 Group:		Base
 Source0:	ftp://sysadm.sorosis.ro/pub/libpwdb/%{name}-%{version}.tar.gz
