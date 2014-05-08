@@ -5,7 +5,7 @@ Summary(pl.UTF-8):	Biblioteka danych o użytkownikach
 Summary(tr.UTF-8):	Parola veri tabanı arşivi
 Name:		pwdb
 Version:	0.62
-Release:	1
+Release:	2
 License:	BSD or GPL
 Group:		Base
 Source0:	http://pkgs.fedoraproject.org/repo/pkgs/compat-pwdb/pwdb-0.62.tar.gz/1a1fd0312040ef37aa741d09465774b4/%{name}-%{version}.tar.gz
@@ -92,12 +92,13 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},/%{_lib},%{_includedir}/pwdb,%{_libdir
 	INCLUDED=$RPM_BUILD_ROOT%{_includedir}/pwdb \
 	LIBDIR=$RPM_BUILD_ROOT/%{_lib}
 
-install conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
+cp -p conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
 mv -f $RPM_BUILD_ROOT/%{_lib}/libpwdb.a $RPM_BUILD_ROOT%{_libdir}
 
 %{__rm} $RPM_BUILD_ROOT/%{_lib}/libpwdb.so
 ln -sf /%{_lib}/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
+/sbin/ldconfig -n $RPM_BUILD_ROOT/%{_lib}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES CREDITS Copyright README doc/pwdb.txt doc/html/*.html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pwdb.conf
 %attr(755,root,root) /%{_lib}/libpwdb.so.*.*
+%attr(755,root,root) /%{_lib}/libpwdb.so.0
 
 %files devel
 %defattr(644,root,root,755)
