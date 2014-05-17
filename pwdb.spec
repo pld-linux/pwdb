@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES CREDITS Copyright README doc/pwdb.txt doc/html/*.html
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pwdb.conf
 %attr(755,root,root) /%{_lib}/libpwdb.so.*.*
-%attr(755,root,root) /%{_lib}/libpwdb.so.0
+%attr(755,root,root) %ghost /%{_lib}/libpwdb.so.0
 
 %files devel
 %defattr(644,root,root,755)
