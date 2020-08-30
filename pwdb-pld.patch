@@ -1,6 +1,6 @@
 --- /dev/null	Tue May  5 22:32:27 1998
 +++ pwdb-0.55/defs/pld.defs	Sat Jan 23 12:44:53 1999
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,23 @@
 +#
 +# Standard defines file for PLD Linux
 +
@@ -23,3 +23,52 @@
 +CONFIGED=$(PPFIX)/etc
 +LIBDIR=$(PREFIX)/lib
 +SECUREDIR=$(LIBDIR)/security
++NIS_LIBS=-lnsl -ltirpc
+--- pwdb-0.62/libpwdb/Makefile.orig	1999-04-10 11:31:20.000000000 +0200
++++ pwdb-0.62/libpwdb/Makefile	2020-08-30 10:45:36.598419348 +0200
+@@ -50,7 +50,7 @@
+ 
+ 
+ $(LIBDYNAME): $(LIBOBJ)
+-	$(LD) -soname $(LIBSONAME) -x -shared -o $(LIBFILENAME) $(LIBOBJ) -lcrypt -lnsl -lc
++	$(LD) -soname $(LIBSONAME) -x -shared -o $(LIBFILENAME) $(LIBOBJ) $(NIS_LIBS) -lcrypt -lc
+ 	@ln -sf $(LIBFILENAME) $@
+ 
+ $(LIBSTATIC): $(LIBOBJ)
+--- pwdb-0.62/Makefile.orig	2002-02-01 02:58:29.000000000 +0100
++++ pwdb-0.62/Makefile	2020-08-30 10:50:57.880012149 +0200
+@@ -96,6 +96,7 @@
+ export AR			# build a static library
+ export RANLIB			# reorder a static library
+ export LOADLIBES		# libraries needed for application linking
++export NIS_LIBS
+ 
+ #
+ # where to install things
+--- pwdb-0.62/examples/Makefile.orig	1998-10-07 01:57:04.000000000 +0200
++++ pwdb-0.62/examples/Makefile	2020-08-30 10:51:36.819801194 +0200
+@@ -15,19 +15,19 @@
+ all:	${PROGS} ../libpwdb/libpwdb.a
+ 
+ posix: posix.o ../libpwdb/libpwdb.a
+-	$(CC) -o $@ $< ../libpwdb/libpwdb.a -lnsl
++	$(CC) -o $@ $< ../libpwdb/libpwdb.a $(NIS_LIBS)
+ 
+ tpwdb: tpwdb.o ../libpwdb/libpwdb.a
+-	${CC} -g -o $@ $< ../libpwdb/libpwdb.a -lnsl
++	${CC} -g -o $@ $< ../libpwdb/libpwdb.a $(NIS_LIBS)
+ 
+ radtest: radtest.o ../libpwdb/libpwdb.a
+-	${CC} -g -o $@ $< ../libpwdb/libpwdb.a -lnsl
++	${CC} -g -o $@ $< ../libpwdb/libpwdb.a $(NIS_LIBS)
+ 
+ gentest: gentest.o ../libpwdb/libpwdb.a
+-	${CC} -g -o $@ $< ../libpwdb/libpwdb.a -lnsl
++	${CC} -g -o $@ $< ../libpwdb/libpwdb.a $(NIS_LIBS)
+ 
+ grouptest: grouptest.o ../libpwdb/libpwdb.a 
+-	${CC} -g -o $@ $< ../libpwdb/libpwdb.a -lnsl
++	${CC} -g -o $@ $< ../libpwdb/libpwdb.a $(NIS_LIBS)
+ 
+ clean:
+ 	rm -f ${PROGS} *.o *~

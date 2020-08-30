@@ -5,12 +5,15 @@ Summary(pl.UTF-8):	Biblioteka danych o użytkownikach
 Summary(tr.UTF-8):	Parola veri tabanı arşivi
 Name:		pwdb
 Version:	0.62
-Release:	2
+Release:	3
 License:	BSD or GPL
 Group:		Base
 Source0:	http://pkgs.fedoraproject.org/repo/pkgs/compat-pwdb/pwdb-0.62.tar.gz/1a1fd0312040ef37aa741d09465774b4/%{name}-%{version}.tar.gz
 # Source0-md5:	1a1fd0312040ef37aa741d09465774b4
 Patch0:		%{name}-pld.patch
+BuildRequires:	libnsl-devel
+BuildRequires:	libtirpc-devel
+BuildRequires:	pkgconfig
 BuildRequires:	sgml-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,7 +83,7 @@ ln -sf defs/pld.defs default.defs
 
 %{__make} \
 	CC="%{__cc}" \
-	OPTIMIZE="%{rpmcflags}"
+	OPTIMIZE="%{rpmcflags} $(pkg-config --cflags libtirpc libnsl)"
 
 %{__make} -C doc
 
@@ -94,7 +97,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},/%{_lib},%{_includedir}/pwdb,%{_libdir
 
 cp -p conf/pwdb.conf $RPM_BUILD_ROOT%{_sysconfdir}/pwdb.conf
 
-mv -f $RPM_BUILD_ROOT/%{_lib}/libpwdb.a $RPM_BUILD_ROOT%{_libdir}
+%{__mv} $RPM_BUILD_ROOT/%{_lib}/libpwdb.a $RPM_BUILD_ROOT%{_libdir}
 
 %{__rm} $RPM_BUILD_ROOT/%{_lib}/libpwdb.so
 ln -sf /%{_lib}/libpwdb.so.%{version} $RPM_BUILD_ROOT%{_libdir}/libpwdb.so
