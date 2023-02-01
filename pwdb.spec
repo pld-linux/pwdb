@@ -5,7 +5,7 @@ Summary(pl.UTF-8):	Biblioteka danych o użytkownikach
 Summary(tr.UTF-8):	Parola veri tabanı arşivi
 Name:		pwdb
 Version:	0.62
-Release:	3
+Release:	4
 License:	BSD or GPL
 Group:		Base
 Source0:	http://pkgs.fedoraproject.org/repo/pkgs/compat-pwdb/pwdb-0.62.tar.gz/1a1fd0312040ef37aa741d09465774b4/%{name}-%{version}.tar.gz
