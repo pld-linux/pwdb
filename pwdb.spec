@@ -76,7 +76,7 @@ Biblioteka statyczna PWDB.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 ln -sf defs/pld.defs default.defs
